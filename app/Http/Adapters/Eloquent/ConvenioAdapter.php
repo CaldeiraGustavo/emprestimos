@@ -1,12 +1,12 @@
 <?php
-namespace App\Http\Adapter\Eloquent;
+namespace App\Http\Adapters\Eloquent;
 
-use App\Http\Adapter\Contracts\ConvenioAdapterInterface;
+use App\Http\Adapters\Contracts\ConvenioAdapterInterface;
 
-class ConvenioAdapter implements ConvenioAdapterInterface
+class ConvenioAdapter extends BaseAdapter implements ConvenioAdapterInterface
 {
-    public function findAll() 
+    public function fileName() 
     {
-        
+        return 'convenios.json';
     }
 }

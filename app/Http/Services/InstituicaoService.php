@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Http\Adapter\Contracts\InstituicaoAdapterInterface;
+use App\Http\Adapters\Contracts\InstituicaoAdapterInterface;
 use Exception;
 use Illuminate\Http\Response;
 use InvalidArgumentException;
@@ -18,7 +18,7 @@ class InstituicaoService
     public function findAll()
     {
         try{
-            
+            return $this->adapter->findAll();
         }catch(Exception $th){
             throw new Exception($th->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

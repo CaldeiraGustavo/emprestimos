@@ -1,12 +1,12 @@
 <?php
-namespace App\Http\Adapter\Eloquent;
+namespace App\Http\Adapters\Eloquent;
 
-use App\Http\Adapter\Contracts\InstituicaoAdapterInterface;
+use App\Http\Adapters\Contracts\InstituicaoAdapterInterface;
 
-class InstituicaoAdapter implements InstituicaoAdapterInterface
-{
-    public function findAll() 
+class InstituicaoAdapter extends BaseAdapter implements InstituicaoAdapterInterface
+{ 
+    public function fileName() 
     {
-        
+        return 'instituicoes.json';
     }
 }

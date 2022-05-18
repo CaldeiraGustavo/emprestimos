@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Http\Adapter\Contracts\TaxaInstituicaoAdapterInterface;
+use App\Http\Adapters\Contracts\TaxaInstituicaoAdapterInterface;
 use Exception;
 use Illuminate\Http\Response;
 use InvalidArgumentException;
@@ -19,7 +19,7 @@ class TaxaInstituicaoService
     public function findAll()
     {
         try{
-            
+            return $this->adapter->findAll();
         }catch(Exception $th){
             throw new Exception($th->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

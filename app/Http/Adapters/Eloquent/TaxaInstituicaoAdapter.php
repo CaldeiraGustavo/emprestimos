@@ -1,12 +1,12 @@
 <?php
-namespace App\Http\Adapter\Eloquent;
+namespace App\Http\Adapters\Eloquent;
 
-use App\Http\Adapter\Contracts\TaxaInstituicaoAdapterInterface;
+use App\Http\Adapters\Contracts\TaxaInstituicaoAdapterInterface;
 
-class TaxaInstituicaoAdapter implements TaxaInstituicaoAdapterInterface
+class TaxaInstituicaoAdapter extends BaseAdapter implements TaxaInstituicaoAdapterInterface
 {
-    public function findAll() 
+    public function fileName() 
     {
-        
+        return 'taxas_instituicoes.json';
     }
 }

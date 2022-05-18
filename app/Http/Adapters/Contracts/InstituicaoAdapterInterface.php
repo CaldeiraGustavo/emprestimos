@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Adapter\Contracts;
+namespace App\Http\Adapters\Contracts;
 
 interface InstituicaoAdapterInterface
 {
