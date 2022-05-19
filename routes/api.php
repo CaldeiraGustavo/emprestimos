@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ConvenioController;
 use App\Http\Controllers\Api\InstituicaoController;
+use App\Http\Controllers\Api\TaxaInstituicaoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/instituicoes', [InstituicaoController::class, 'show']);
 
-Route::get('/convenios');
+Route::get('/convenios', [ConvenioController::class, 'show']);
 
-Route::post('/simulacao');
+Route::get('/taxas-instituicoes', [TaxaInstituicaoController::class, 'show']);
+
+Route::post('/simulacao', [TaxaInstituicaoController::class, 'simular']);

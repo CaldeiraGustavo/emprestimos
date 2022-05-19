@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SimulacaoRequest;
 use App\Http\Services\TaxaInstituicaoService;
 use Exception;
 use Illuminate\Http\Request;
@@ -25,7 +26,19 @@ class TaxaInstituicaoController extends Controller
         }catch(InvalidArgumentException $e){
             return response()->json($e->getMessage(), $e->getCode());
         }catch(Exception $e){
-            return response()->json($e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function simular(SimulacaoRequest $request) 
+    {
+        try{
+            $simuledValues = $this->service->returnSimulatedValues($request);
+            return response()->json(['deu bom' => $simuledValues]);
+        }catch(InvalidArgumentException $e){
+            return response()->json($e->getMessage(), $e->getCode());
+        }catch(Exception $e){
+            return response()->json($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

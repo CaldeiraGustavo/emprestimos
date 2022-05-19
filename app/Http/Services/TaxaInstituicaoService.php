@@ -24,4 +24,46 @@ class TaxaInstituicaoService
             throw new Exception($th->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function returnSimulatedValues($request)
+    {
+        $instituicoes = $this->adapter->findAll();
+        $filteredInstitutions = $this->filterTaxInstitutions($request, $instituicoes);
+        return $filteredInstitutions;
+    }
+
+    private function filterTaxInstitutions($request, $instituicoes) 
+    {
+        $aux = [];
+        $hasInstituicoes = $hasConvenios = $hasParcela = true;
+
+        foreach($instituicoes as $instituicao) {
+            if($request->has('instituicoes')) {
+                $hasInstituicoes = in_array($instituicao['instituicao'], $request->get('instituicoes'));
+            }
+
+            if($request->has('convenios')) {
+                $hasConvenios = in_array($instituicao['convenio'], $request->get('convenios'));
+            }
+
+            if($request->has('parcela')) {
+                $hasParcela = $instituicao['parcelas'] == $request->get('parcela');
+            }
+
+            if($hasInstituicoes && $hasConvenios && $hasParcela) {
+                $aux[] = $instituicao;
+            }
+        }
+        return $aux;
+    }
+
+    private function formataValores($data) 
+    {
+
+    }
+
+    private function calculaParecela($valor, $coeficiente)
+    {
+        return $valor * $coeficiente;
+    }
 }
