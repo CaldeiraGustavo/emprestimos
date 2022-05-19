@@ -51,19 +51,27 @@ class TaxaInstituicaoService
             }
 
             if($hasInstituicoes && $hasConvenios && $hasParcela) {
-                $aux[] = $instituicao;
+                if(array_key_exists($instituicao['convenio'], $aux))                
+                    array_push($aux[$instituicao['convenio']], $this->formataValores($instituicao, $request->get('valor_emprestimo')));
+                else
+                    $aux[$instituicao['convenio']] = [$this->formataValores($instituicao, $request->get('valor_emprestimo'))];                
             }
         }
         return $aux;
     }
 
-    private function formataValores($data) 
+    private function formataValores($data, $valor) 
     {
-
+        return [
+            'taxa'          => $data['taxaJuros'],
+            'parcelas'      => $data['parcelas'],
+            'valor_parcela' => $this->calculaParecela($valor, $data['coeficiente']),
+            'convenio'      => $data['convenio']
+        ];
     }
 
     private function calculaParecela($valor, $coeficiente)
     {
-        return $valor * $coeficiente;
+        return number_format($valor * $coeficiente, 2);
     }
 }
