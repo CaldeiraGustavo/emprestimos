@@ -34,7 +34,7 @@ class TaxaInstituicaoController extends Controller
     {
         try{
             $simuledValues = $this->service->returnSimulatedValues($request);
-            return response()->json(['deu bom' => $simuledValues]);
+            return response()->json($simuledValues);
         }catch(InvalidArgumentException $e){
             return response()->json($e->getMessage(), $e->getCode());
         }catch(Exception $e){
