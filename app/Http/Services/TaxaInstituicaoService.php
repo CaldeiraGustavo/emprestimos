@@ -51,10 +51,10 @@ class TaxaInstituicaoService
             }
 
             if($hasInstituicoes && $hasConvenios && $hasParcela) {
-                if(array_key_exists($instituicao['convenio'], $aux))                
-                    array_push($aux[$instituicao['convenio']], $this->formataValores($instituicao, $request->get('valor_emprestimo')));
+                if(array_key_exists($instituicao['instituicao'], $aux))                
+                    array_push($aux[$instituicao['instituicao']], $this->formataValores($instituicao, $request->get('valor_emprestimo')));
                 else
-                    $aux[$instituicao['convenio']] = [$this->formataValores($instituicao, $request->get('valor_emprestimo'))];                
+                    $aux[$instituicao['instituicao']] = [$this->formataValores($instituicao, $request->get('valor_emprestimo'))];                
             }
         }
         return $aux;
